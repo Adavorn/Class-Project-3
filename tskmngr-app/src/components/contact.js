@@ -1,4 +1,13 @@
-function ContactUs() {
+import {useEffect} from "react"
+
+function Contact() {
+
+  useEffect(()=>{
+    
+    console.log("#App::Home page load")
+
+    
+  },[])
   return (
     <>
       <h2>Contact Us</h2>
@@ -20,4 +29,4 @@ function ContactUs() {
   );
 }
 
-export default ContactUs;
+export default Contact;
