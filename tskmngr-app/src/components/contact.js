@@ -92,7 +92,9 @@ function ContactUs() {
           </a>
         </div>
       </form>
-    </div>
+      <p></p>
+        <p>Footer @ 2025</p>
+      </div>
   );
 }
 
