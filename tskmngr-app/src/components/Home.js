@@ -1,114 +1,125 @@
-
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react";
 
 const initial_todo_items = [
-  {id:1,name:"item one", completed:false},
-  {id:2,name:"item two", completed:false},
-  {id:3,name:"item three", completed:true},
-  {id:4,name:"item four", completed:false},
-  {id:5,name:"item five", completed:false}
+  { id: 1, name: "item one", completed: false },
+  { id: 2, name: "item two", completed: false },
+  { id: 3, name: "item three", completed: true },
+  { id: 4, name: "item four", completed: false },
+  { id: 5, name: "item five", completed: false },
 ];
 
 function Home() {
-
-
-
   const [tmplist, setTmpList] = useState(initial_todo_items);
-  const [todolist, setTodoList] = useState(null);
-  const [txtitem, setItem] = useState("")
-  const [msgText,setMsg] = useState("")
-  
-  const handleAddNewItem = (e) =>{
+  const [todolist, setTodoList] = useState(initial_todo_items);
+  const [txtitem, setItem] = useState("");
+  const [msgText, setMsg] = useState("");
+  const [filter, setFilter] = useState("all");
+
+  const handleAddNewItem = (e) => {
     e.preventDefault();
-      
-      if(txtitem === null ||  txtitem.trim().length === 0)
-      {
-          setMsg(`* please enter a valid item name`);
-          return true;
-      }
 
-      const _newitem = {id:new Date().getTime(),name:txtitem,completed:false};
+    if (txtitem.trim().length === 0) {
+      setMsg("* please enter a valid item name");
+      return;
+    }
 
-      setTmpList((prevval)=>{
+    const _newitem = { id: new Date().getTime(), name: txtitem, completed: false };
 
-          const _lst = [...prevval,_newitem]
-          setTodoList((prevval)=>[..._lst]);    
-          return _lst;
-      });
+    setTmpList((prevval) => {
+      const _lst = [...prevval, _newitem];
+      setTodoList(_lst); 
+      return _lst;
+    });
 
-      setMsg("# item added");
-      setItem("");                     
+    setMsg("# item added");
+    setItem("");
+  };
 
-   }
+  const handleDelete = (e, id) => {
+    e.preventDefault();
 
-   function handleDelete(e, id){
+    const updatedList = tmplist.filter((item) => item.id !== id);
+    setTmpList(updatedList);
+    setTodoList(updatedList);
+    setMsg(`# item deleted ${id}`);
+  };
 
-    e.preventDefault()
+  const handleCheckboxChange = (id) => {
+    const updatedList = tmplist.map((item) =>
+      item.id === id ? { ...item, completed: !item.completed } : item
+    );
+    setTmpList(updatedList);
+    setTodoList(updatedList);
+  };
 
-    //if(!("delete item?")){
-      //return false;
-    //}
+  const handleFilterChange = (filter) => {
+    setFilter(filter);
 
-    //array.findIndex 
-    //tmplist.splice(foundindex,1)
-    //todolist.splice(foundindex,1)
+    if (filter === "all") {
+      setTodoList(tmplist);
+    } else if (filter === "complete") {
+      setTodoList(tmplist.filter((item) => item.completed));
+    } else if (filter === "in-complete") {
+      setTodoList(tmplist.filter((item) => !item.completed));
+    }
+  };
 
-    setMsg(`# item deleted ${id}`)
+  const handleClearInput = () => {
+    setItem("");
+  };
 
-   }
-
-
-  useEffect(()=>{
-
-    console.log("#App::Home page load")
-    
-    setTodoList(tmplist)
-    console.log("---tmplist\n",tmplist)
-    console.log("---todolist\n",todolist)
-
-  },[])
-
+  useEffect(() => {
+    console.log("#App::Home page load");
+    console.log("---tmplist", tmplist);
+    console.log("---todolist", todolist);
+  }, [tmplist, todolist]);
 
   return (
-      <>
-      <div className="app-center-page">  
-          <h3>Demo Task Manager App v1.0.6</h3>
+    <>
+      <div className="app-center-page">
+        <h3>Demo Task Manager App v1.0.6</h3>
+        <p></p>
+        <div>
+          <input
+            value={txtitem}
+            type="text"
+            onChange={(e) => setItem(e.target.value)}
+            maxLength={25}
+            placeholder="* add item"
+          />
+          {" "}
+          <button onClick={handleAddNewItem}>Add</button> {" "}
+          <a href="#" onClick={handleClearInput}>clear</a>
           <p></p>
-          <div>
-              <input value={txtitem} type="text" 
-                       onChange={(e)=>setItem(e.target.value)}
-                       maxLength={25} placeholder="* add item"/>
-              {" "} 
-              <button onClick={handleAddNewItem}>Add</button> {" "} <a>clear</a>
-              <p></p>
-          </div>
-          <p>{msgText}</p>
-          <br/>
-          <div>
-            <a>all</a> {" | "}
-            <a>complete</a> {" | "}
-            <a>in-complete</a> 
-          </div>
-          <br/>
-          <div>
-              {todolist && todolist.map((item)=>
-              <p key={item.id}>{
-                <>
-                   <input type="checkbox" checked={item.completed}/>
-                    {" "}
-                    <span>{item.name}</span>
-                    {" "}
-                    <button onClick={(e)=>handleDelete(e,item.id)}>x</button>
-                </>}
-              </p>)}
-          </div>
-          <p></p>
-          <p>footer @ 2025</p>       
         </div>
-      </>
+        <p>{msgText}</p>
+        <br />
+        <div>
+          <a href="#" onClick={() => handleFilterChange("all")}>all</a> {" | "}
+          <a href="#" onClick={() => handleFilterChange("complete")}>complete</a> {" | "}
+          <a href="#" onClick={() => handleFilterChange("in-complete")}>in-complete</a>
+        </div>
+        <br />
+        <div>
+          {todolist && todolist.map((item) => (
+            <p key={item.id}>
+              <input
+                type="checkbox"
+                checked={item.completed}
+                onChange={() => handleCheckboxChange(item.id)}
+              />
+              {" "}
+              <span>{item.name}</span>
+              {" "}
+              <button onClick={(e) => handleDelete(e, item.id)}>x</button>
+            </p>
+          ))}
+        </div>
+        <p></p>
+        <p>footer @ 2025</p>
+      </div>
+    </>
+  );
+}
 
-    );
-  }
-  
-  export default Home;
-  
+export default Home
