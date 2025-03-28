@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function ContactUs() {
-  // Define state variables for the form inputs
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,20 +11,20 @@ function ContactUs() {
     console.log("#App::ContactUs page load");
   }, []);
 
-  // Clear function to reset form fields
+
   const lnkClear = (e) => {
-    e.preventDefault(); // Prevent default link behavior
+    e.preventDefault();
     setFirstName("");
     setLastName("");
     setEmail("");
     setComment("");
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page reload on form submission
 
-    // Example of what to do when the form is submitted
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+
     const formData = {
       firstName,
       lastName,
@@ -34,9 +34,6 @@ function ContactUs() {
 
     console.log("Form submitted with data:", formData);
 
-    // You can also send this data to an API or process it as needed
-    // After submitting, you might want to clear the form or show a success message
-    // For example, we can clear the form after submission:
     setFirstName("");
     setLastName("");
     setEmail("");

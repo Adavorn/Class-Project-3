@@ -116,7 +116,7 @@ function Home() {
           ))}
         </div>
         <p></p>
-        <p>footer @ 2025</p>
+        <p>Footer @ 2025</p>
       </div>
     </>
   );
