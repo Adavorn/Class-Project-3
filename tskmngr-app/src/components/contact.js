@@ -1,32 +1,39 @@
 import {useEffect} from "react"
 
-function Contact() {
+function ContactUs() {
 
-  useEffect(()=>{
-    
-    console.log("#App::Home page load")
 
-    
-  },[])
-  return (
-    <>
-      <h2>Contact Us</h2>
-      <form>
-          <div> 
-              <span>first name: </span> <input type="text" maxLength={25} placeholder="* first name"/>
-              <br/>
-              <span>last name: </span> <input type="text" maxLength={25} placeholder="last name"/>
-              <br/>
-              <span>email: </span> <input type="text" maxLength={100} placeholder="* email"/>
-              <br/>
-              <span>comment</span>
-              <br/><textarea maxLength={10} cols={20} rows={5} placeholder="* comment"></textarea>
-              <p></p>
-              <button>submit</button> {" "} <a href="#">clear</a>
-          </div>
-      </form>
-    </>
-  );
-}
-
-export default Contact;
+    useEffect(()=>{
+  
+      console.log("#App::ContactUs page load")
+  
+    },[]) 
+  
+    return (
+      <>
+        <div className="app-center-page">  
+          <h2>Contact Us</h2>
+          <form>
+              <div> 
+                  <span>First Name: *</span> 
+                  <input type="text" maxLength={25} placeholder="* first name" required/>
+                  <br/>
+                  <span>Last Name: </span> 
+                  <input type="text" maxLength={25} placeholder="last name"/>
+                  <br/>
+                  <span>Email: *</span> 
+                  <input type="text" maxLength={100} placeholder="* email" required/>
+                  <br/>
+                  <span>Comment: *</span> 
+                  <br/><textarea rows={5} cols={30} maxLength={100} placeholder="* comment" required></textarea>
+                  <p></p>
+                  <button>Submit</button> {" "} <a>clear</a>
+              </div>
+          </form>
+      </div>
+      </>
+    );
+  }
+  
+  export default ContactUs;
+  
