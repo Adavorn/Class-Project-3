@@ -45,3 +45,47 @@
   justify-content: center;
   align-items: center;
 }
+
+body {
+  background-color: #84C9A6; /* Random background color */
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* CSS for NavBar */
+.navbar {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  background-color: #333; 
+  color: white; 
+  padding: 10px 0; 
+  z-index: 1000; 
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  justify-content: center; 
+}
+
+.navbar ul li {
+  margin: 0 15px; 
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none; 
+  font-size: 16px; 
+}
+
+.navbar ul li a:hover {
+  color: #f0a500; 
+}
