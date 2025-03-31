@@ -77,7 +77,7 @@ function Home() {
   return (
     <>
       <div className="app-center-page">
-        <h3>Demo Task Manager App v1.0.6</h3>
+        <h3>Demo Task Manager App</h3>
         <p></p>
         <div>
           <input
