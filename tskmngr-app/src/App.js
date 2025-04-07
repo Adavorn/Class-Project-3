@@ -1,8 +1,9 @@
 //import {BrowserRouter, Routes, Route} from "react-router-dom"
-import {HashRouter, Routes, Route} from "react-router-dom";
-import Home from "./components/Home";
+import {HashRouter, Routes, Route} from "react-router-dom"
+import Home from "./components/Home"
 import Login from "./components/Login";
 import Register from "./components/Register";
+
 import './App.css';
 
 function App() {

@@ -1,14 +1,16 @@
+import {Link} from "react-router-dom"
+
 function Home()
 {
     return (
         <>
-            <p>React Dashboard App v1.2</p>
+            <p>React Dashboard App v1.3</p>
             <p></p>
             <p>
-                Login
+                <Link to="/login">Login</Link>
             </p>
             <p>
-                Register 
+                <Link to="/register">Register</Link>
             </p>
         </>
     )

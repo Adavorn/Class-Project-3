@@ -6,10 +6,10 @@ function Register()
             <p></p>
             <form>
                 <label>* UserName: </label><input type="text" placeholder="* username" maxLength={25}></input><br/>
-                <label>* Password: </label><input type="password" placeholder="* password" maxLength={25}></input>
+                <label>* Password: </label><input type="password" placeholder="* password" maxLength={25}></input><br/>
                 <label>* Confirm Password: </label><input type="password" placeholder="* confirm password" maxLength={25}></input>
                 <p></p>
-                <input type="checkbox">Terms and Services</input>
+                <input type="checkbox"/>Terms and Services
                 <p></p>
                 <button>Submit</button>
             </form>
@@ -18,4 +18,5 @@ function Register()
         </>
     )
 }
+
 export default Register;
