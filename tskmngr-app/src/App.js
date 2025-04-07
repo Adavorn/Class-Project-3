@@ -1,22 +1,20 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Contact from './components/contact';
-import NavBar from './components/NavBar';
+//import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {HashRouter, Routes, Route} from "react-router-dom"
+import Home from "./components/Home"
+import Login from "./components/Login";
 import './App.css';
 
 function App() {
-   
   return (
     <>
-      <HashRouter> 
-        <NavBar/>         
+      <HashRouter>       
         <Routes>      
-          <Route path="/" element={<Home/>}/>
-          <Route path="/Contact" element={<Contact/>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Login/>}/>
         </Routes>
-    </HashRouter>   
-     
+      </HashRouter>    
     </>
-  ); 
+  );
 }
+
 export default App;
