@@ -11,10 +11,11 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.0",
     "react-scripts": "5.0.1",
+    "sqlite3": "^5.1.7",
     "web-vitals": "^2.1.4"
   },
-    "homepage": "https://Adavorn.github.io/Class-Project-4",
-   "scripts": {
+  "homepage": "https://Adavorn.github.io/Class-Project-4",
+  "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
@@ -42,5 +43,10 @@
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
-  }
+  },
+  "description": "a website to search and display tasks",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
