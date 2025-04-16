@@ -18,7 +18,7 @@ function Register()
 
 
         let _msg = "";
-        let _replit_url = "https://d4a4b615-8c0c-4341-adae-e90a82bcb576-00-2xx2fade5wfsh.worf.replit.dev";
+        let _replit_url = "https://60fecbef-a7bd-49a4-8277-3d1ecf61d2d5-00-1sevyde8z4qae.picard.replit.dev/";
    
         const _uid = txtusername.current.value
         const _pwd = txtpassword.current.value
