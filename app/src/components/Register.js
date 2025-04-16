@@ -1,113 +1,104 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
-function Register()
-{
-    const txtusername = useRef("")
-    const txtpassword = useRef("")
-    const txtconfirmpassword = useRef("")
-    const chkterm = useRef("")
-    const [msgText, setMsg] = useState("")
+function Register() {
+    const txtusername = useRef("");
+    const txtpassword = useRef("");
+    const txtconfirmpassword = useRef("");
+    const chkterm = useRef("");
+    const [msgText, setMsg] = useState("");
 
     let navigate = useNavigate();
 
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-
-        console.log("# handle submit")
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("# handle submit");
 
         let _msg = "";
-        let _replit_url = "https://60fecbef-a7bd-49a4-8277-3d1ecf61d2d5-00-1sevyde8z4qae.picard.replit.dev/";
-   
-        const _uid = txtusername.current.value
-        const _pwd = txtpassword.current.value
-        const _confirmpwd = txtconfirmpassword.current.value
-        const _chkterm = chkterm.current.checked
-       
-        //const _url = `http://localhost:8080/register`;  
-        const _url = `${_replit_url}/register`;  
+        const _replit_url = "https://60fecbef-a7bd-49a4-8277-3d1ecf61d2d5-00-1sevyde8z4qae.picard.replit.dev";
+        const _url = `${_replit_url}/register`;
 
-        if(_uid === null || _uid.trim().length === 0)
-        {
-            _msg = "* invalid username";                
-            setMsg(_msg)                
-            return false;
-        }
-       
-        if(_pwd === null || _pwd.trim().length === 0)
-        {
-            _msg = " * invalid password";                
-            setMsg(_msg)                
-            return false;
-        }
-           
-        if(_pwd !== _confirmpwd)
-        {
-            _msg = " * confirm password does not match password";
-            setMsg(_msg)                
-            return false;
-        }
-           
-        if(_chkterm === false)
-        {
-            _msg = " * please select terms/services";
-            setMsg(_msg)                
-            return false;
+        const _uid = txtusername.current.value;
+        const _pwd = txtpassword.current.value;
+        const _confirmpwd = txtconfirmpassword.current.value;
+        const _chkterm = chkterm.current.checked;
+
+        if (!_uid || _uid.trim().length === 0) {
+            setMsg("* invalid username");
+            return;
         }
 
-        const _post_data = {username:_uid, password:_pwd};
+        if (!_pwd || _pwd.trim().length === 0) {
+            setMsg("* invalid password");
+            return;
+        }
 
-        fetch(_url,{method:'POST',
-            headers:{'Content-type':'application/json'},
-            body:JSON.stringify(_post_data)}
-        )
-        .then((res)=>res.json())
-        .then((data)=> {
-           
-            if(data.register === true)
-            {
-                navigate("/dashboard",{replace:true})
-            }
+        if (_pwd !== _confirmpwd) {
+            setMsg("* confirm password does not match password");
+            return;
+        }
 
-            setMsg(data.msg)
+        if (!_chkterm) {
+            setMsg("* please select terms/services");
+            return;
+        }
+
+        const _post_data = { username: _uid, password: _pwd };
+
+        fetch(_url, {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(_post_data),
+
         })
-        .catch((error)=>{
-            setMsg("* request error");
-            console.log("* request error *");
-            console.log(error);
-        });
-   
-        txtusername.current.value = "";
-        txtpassword.current.value = "";
-        txtconfirmpassword.current.value = ""
-        chkterm.current.checked = false
+        .then((res) => res.json())
+        .then((data) => {
+            setMsg(data.msg);
 
-    }
+            if (data.register === true) {
+                // Clear form only on successful registration
+                txtusername.current.value = "";
+                txtpassword.current.value = "";
+                txtconfirmpassword.current.value = "";
+                chkterm.current.checked = false;
+
+                navigate("/dashboard", { replace: true });
+            }
+        })
+        .catch((error) => {
+            setMsg("* request error");
+            console.error("* request error *", error);
+        });
+    };
 
     return (
         <>
-        <div className="app-center-page">
-            <p>Register</p>
-            <p></p>
-            <form onSubmit={(e)=>handleSubmit(e)}>
-                <label>* UserName: </label><input ref={txtusername} type="text" placeholder="* username" maxLength={25}></input><br/>
-                <label>* Password: </label><input ref={txtpassword} type="password" placeholder="* password" maxLength={25}></input><br/>
-                <label>* Confirm Password: </label><input ref={txtconfirmpassword} type="password" placeholder="* confirm password" maxLength={25}></input>
+            <div className="app-center-page">
+                <p>Register</p>
+                <form onSubmit={handleSubmit}>
+                    <label>* UserName: </label>
+                    <input ref={txtusername} type="text" placeholder="* username" maxLength={25} /><br />
+
+                    <label>* Password: </label>
+                    <input ref={txtpassword} type="password" placeholder="* password" maxLength={25} /><br />
+
+                    <label>* Confirm Password: </label>
+                    <input ref={txtconfirmpassword} type="password" placeholder="* confirm password" maxLength={25} />
+                    <p></p>
+
+                    <input type="checkbox" ref={chkterm} /> Terms and Services
+                    <p>{msgText}</p>
+
+                    <button>Submit</button>
+                </form>
+
                 <p></p>
-                <input type="checkbox" ref={chkterm} />Terms and Services
+                <Link to="/login">Login</Link>
                 <p></p>
-                <p>{msgText}</p>
-                <p></p>
-                <button>Submit</button>
-            </form>
-            <p></p>
-            <Link to="/login">Login</Link>
-            <p></p>
-            <Link to="/">Home</Link>
-        </div>
+                <Link to="/">Home</Link>
+            </div>
         </>
-    )
+    );
 }
 
 export default Register;
