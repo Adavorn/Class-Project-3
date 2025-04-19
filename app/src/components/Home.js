@@ -1,20 +1,18 @@
-import {Link} from "react-router-dom"
-function Home()
-{
-    return (
-        <>
-            <p>React Dashboard App v1.3</p>
-            <p></p>
-            <p>
-                <Link to="/login">Login</Link>
-            </p>
-            <p>
-                <Link to="/register">Register</Link>
-            </p>
-            <p>
-                <Link to="/dashboard">Dashboard</Link>
-            </p>
-        </>
-    )
+import { Link } from "react-router-dom";
+import "./Home.css";
+
+function Home() {
+  return (
+    <div className="home-container">
+      <div className="home-card">
+        <h1>Baseball FAQ</h1>
+        <div className="home-links">
+          <Link to="/login" className="home-link">Login</Link>
+          <Link to="/register" className="home-link">Register</Link>
+        </div>
+      </div>
+    </div>
+  );
 }
+
 export default Home;
