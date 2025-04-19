@@ -35,6 +35,11 @@ function Login() {
                 const text = await res.text();
                 console.log("Raw response text:", text);
 
+                if (data.login === true) {
+                    localStorage.setItem("username", _uid); 
+                    navigate("/dashboard", { replace: true });
+                  }
+
                 try {
                     const data = JSON.parse(text);
                     console.log("API response:", data);
