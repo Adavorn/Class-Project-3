@@ -1,39 +1,34 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import "./Dashboard.css";
 
-function Dashboard()
-{
-    return (
-        <>
-            <nav>
-                <span>[logo]</span>
-                {" "}
-                <span>username</span>
-                {" "}
-                <Link to="/login">logout</Link>
-            </nav>
-            <div className="app-center-page">
-                <p></p>
-                <div style={{display:"flex", width:"90%"}}>
-                    <div style={{width:"30%"}}>
-                        <p>Category 1</p>
-                        <p>Category 2</p>
-                        <p>Category 3</p>
-                        <p>Category 4</p>
-                        <p>Category 5</p>
-                        <p>Category 6</p>
-                    </div>                
-                    <div style={{width:"50%"}}>
-                        <p>Category 1</p>
-                    </div>                    
-                    <div style={{width:"20%"}}>
-                        [about]
-                    </div>                
-                </div>
-                <p></p>
-                <span>Footer @ 2025</span>
-            </div>
-        </>
-    )
+function Dashboard() {
+  const username = localStorage.getItem("username") || "Username";
+
+  return (
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1>App Title</h1>
+        <div className="user-info">
+          Welcome, {username} &nbsp;
+          <Link to="/login" className="logout-link">Logout</Link>
+        </div>
+      </header>
+
+      <div className="dashboard-content">
+        <aside className="dashboard-sidebar">
+          <div className="category">Category1</div>
+          <div className="category">Category2</div>
+          <div className="category">Category3</div>
+          <div className="category">Category4</div>
+          <div className="category">Category5</div>
+        </aside>
+
+        <main className="dashboard-main">
+          <p>Select a Category to view its questions.</p>
+        </main>
+      </div>
+    </div>
+  );
 }
 
 export default Dashboard;
