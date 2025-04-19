@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./Dashboard.css";
 
 function Dashboard() {
-  const username = localStorage.getItem("username") || "Username";
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const categories = ["Rules", "History", "Players", "Teams", "Stats & Analytics"];
@@ -56,7 +55,7 @@ function Dashboard() {
       },
       {
         question: "Who was the MVP of the last World Series?",
-        answer: "This changes yearly — look up the current season's MVP on MLB.com."
+        answer: "This changes yearly — check MLB.com for the latest MVP."
       },
       {
         question: "What does a designated hitter do?",
@@ -106,8 +105,7 @@ function Dashboard() {
       <header className="dashboard-header">
         <h1>Baseball Trivia Dashboard</h1>
         <div className="user-info">
-          Welcome, {username}
-          <Link to="/login" className="logout-link">Logout</Link>
+          Welcome | <Link to="/login" className="logout-link">Logout</Link>
         </div>
       </header>
 
